@@ -1677,7 +1677,10 @@ $.fn.dropdown = function(parameters) {
             return $text.text();
           },
           query: function() {
-            return $.trim($search.val());
+            const rawValue = $.trim($search.val());
+            return typeof settings.filterAddictions === 'function'
+              ? settings.filterAddictions(rawValue)
+              : rawValue;
           },
           searchWidth: function(value) {
             value = (value !== undefined)
@@ -3733,6 +3736,7 @@ $.fn.dropdown.settings = {
   allowAdditions         : false,      // whether multiple select should allow user added values
   ignoreCase             : false,       // whether to consider values not matching in case to be the same
   hideAdditions          : true,       // whether or not to hide special message prompting a user they can enter a value
+  filterAddictions       : null,        // custom function for preprocessing user input
 
   maxSelections          : false,      // When set to a number limits the number of selections to this count
   useLabels              : true,       // whether multiple select should filter currently active selections from choices
