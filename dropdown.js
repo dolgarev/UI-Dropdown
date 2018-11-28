@@ -258,6 +258,7 @@ $.fn.dropdown = function(parameters) {
             ? query
             : module.get.query()
           ;
+          $search.val(query);
           module.verbose('Searching for query', query);
           if(module.has.minCharacters(query)) {
             module.filter(query);
