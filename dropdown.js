@@ -1678,7 +1678,7 @@ $.fn.dropdown = function(parameters) {
             return $text.text();
           },
           query: function() {
-            const rawValue = $.trim($search.val());
+            const rawValue = $search.val();
             return typeof settings.filterAddictions === 'function'
               ? settings.filterAddictions(rawValue)
               : rawValue;
